@@ -6,8 +6,9 @@ gem 'rails', '3.2.7'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 group :development, :test do
-  gem 'sqlite3'
+#  gem 'sqlite3'
   gem 'rspec-rails'
+  gem 'guard-rspec'
 end
 
 gem 'json'
@@ -43,8 +44,10 @@ gem 'jquery-rails'
 
 group :test do
   gem 'capybara'
+  gem 'rb-inotify'
+  gem 'libnotify'
 end
 
-group :production do
+#group :production do
   gem 'pg'
-end
+#end
