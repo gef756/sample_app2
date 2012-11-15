@@ -9,6 +9,8 @@ group :development, :test do
 #  gem 'sqlite3'
   gem 'rspec-rails'
   gem 'guard-rspec'
+  gem 'guard-spork'
+  gem 'spork'
 end
 
 gem 'json'
