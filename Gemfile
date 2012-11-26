@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 #ruby "1.9.3"
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.9'
 gem 'bootstrap-sass', '2.1'
 
 # Bundle edge Rails instead:
@@ -48,9 +48,9 @@ gem 'jquery-rails'
 # gem 'ruby-debug'
 
 group :test do
-  gem 'capybara'
-  gem 'rb-inotify'
-  gem 'libnotify'
+  gem 'capybara' #, '1.1.2'
+  gem 'rb-inotify', '0.8.8'
+  gem 'libnotify', '0.5.9'
 end
 
 #group :production do
