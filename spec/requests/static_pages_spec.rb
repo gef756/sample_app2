@@ -12,14 +12,24 @@ describe "StaticPages" do
 #  end
 #  render_views
   subject { page }
+  
+  shared_examples_for "all static pages" do
+    it { should have_selector('h1',     text: heading) }
+    # it { should have_selector('title, text: full_title(page_title)) }
+  end
+
   describe "Home page" do
      before {visit root_path}
 #    it "should have the content 'Sample App'" do
 #      visit '/static_pages/home'
 #      page.should have_content('Sample App')
 #    end
-    it { should have_selector('h1', :text => 'Sample App') }
-   # it "should have the right title" do
+
+    let(:heading) { 'Sample App' }
+    let(:page_title) { '' }  
+    it_should_behave_like "all static pages" 
+
+# it "should have the right title" do
    #   should have_selector('title', text: "#{base_title}")
    # end
    #  it {should have_selector('title', text: full_title(''))}
@@ -33,7 +43,10 @@ describe "StaticPages" do
 #      visit '/static_pages/help'
 #      page.should have_content('Help')
 #    end
-    it {should have_selector('h1', :text => 'Help') }
+    let(:heading) { 'Help' }
+    let(:page_title) {full_title('Help')}
+    it_should_behave_like "all static pages"
+    # it {should have_selector('h1', :text => 'Help') }
     # it {should have_selector('title', text: full_title('Help')) }
     # it {should have_xpath("//title", text: full_title('Help'))}
 
@@ -52,7 +65,10 @@ describe "StaticPages" do
 #      page.should have_content('About Us')
 #    end
     before { visit about_path }
-    it {should have_selector('h1', :text => 'About Us') }
+    let(:heading) {'About Us'}
+    let(:page_title) {full_title('About') }
+    it_should_behave_like "all static pages"
+    # it {should have_selector('h1', :text => 'About Us') }
     # it {should have_selector('title', text: "#{base_title} | About")}
     # it {should have_xpath("//title", text: full_title('About'))}
 #    it "should have the right title" do
@@ -64,7 +80,10 @@ describe "StaticPages" do
   
   describe "Contact page" do
     before {visit contact_path}
-    it {should have_selector('h1', :text => 'Contact') }
+    # it {should have_selector('h1', :text => 'Contact') }
+    let(:heading) {'Contact'} 
+    let(:page_title) {full_title('Contact')}
+    it_should_behave_like "all static pages"
     # it {should have_selector('title', text: "#{base_title} | Contact")}
     # it {should have_xpath("//title", text: full_title('Contact'))}
 #    it "should have the right title" do
@@ -72,5 +91,21 @@ describe "StaticPages" do
 #      page.should have_selector('title',
 #                    :text => "#{base_title} | Contact")
 #    end
+  end
+ 
+  it "should have the right links on the layout" do
+    visit root_path
+     click_link "About"
+      # page.should have_selector('title', full_title('A22bout Us'))
+       page.should have_selector 'h1', text: "About"
+     click_link "Help"
+       page.should have_selector 'h1', text: "Help"
+     click_link "Contact"
+       page.should have_selector 'h1', text: "Contact"
+     click_link "Home"
+     click_link "Sign up now!"
+       page.should have_selector 'h1', text: "Sign up"
+     click_link "sample app"
+       page.should have_selector 'h1', text: "Welcome to the Sample App"
   end
 end
