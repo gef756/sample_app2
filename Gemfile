@@ -47,6 +47,10 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug'
 
+group :development do
+  gem 'annotate'
+end
+
 group :test do
   gem 'capybara' #, '1.1.2'
   gem 'rb-inotify', '0.8.8'
