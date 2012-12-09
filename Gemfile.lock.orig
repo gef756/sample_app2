@@ -28,7 +28,10 @@ GEM
     activesupport (3.2.9)
       i18n (~> 0.6)
       multi_json (~> 1.0)
+<<<<<<< HEAD
     addressable (2.3.2)
+=======
+>>>>>>> a5055ca00731737f4afc7f587a58244cfd89c1b5
     annotate (2.5.0)
       rake
     arel (3.0.2)
@@ -173,8 +176,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+<<<<<<< HEAD
   annotate (= 2.5.0)
   bcrypt-ruby (= 3.0.1)
+=======
+  annotate
+>>>>>>> a5055ca00731737f4afc7f587a58244cfd89c1b5
   bootstrap-sass (= 2.1)
   capybara
   coffee-rails (~> 3.2.1)
