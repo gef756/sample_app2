@@ -1,5 +1,5 @@
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     actionmailer (3.2.9)
       actionpack (= 3.2.9)
@@ -56,6 +56,11 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    factory_girl (4.1.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.1.0)
+      factory_girl (~> 4.1.0)
+      railties (>= 3.0.0)
     ffi (1.2.0)
     guard (1.5.4)
       listen (>= 0.4.2)
@@ -178,6 +183,7 @@ DEPENDENCIES
   bootstrap-sass (= 2.1)
   capybara
   coffee-rails (~> 3.2.1)
+  factory_girl_rails (= 4.1.0)
   guard-rspec
   guard-spork
   jquery-rails
