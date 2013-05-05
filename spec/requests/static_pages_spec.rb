@@ -16,6 +16,7 @@ describe "StaticPages" do
   shared_examples_for "all static pages" do
     it { should have_selector('h1',     text: heading) }
     # it { should have_selector('title, text: full_title(page_title)) }
+    it { should have_title(page_title) }
   end
 
   describe "Home page" do
@@ -49,6 +50,7 @@ describe "StaticPages" do
     # it {should have_selector('h1', :text => 'Help') }
     # it {should have_selector('title', text: full_title('Help')) }
     # it {should have_xpath("//title", text: full_title('Help'))}
+    # it { should have_title(full_title('Help')) }
 
 #    it "should have the right title" do
 #      visit '/static_pages/help'
@@ -76,6 +78,7 @@ describe "StaticPages" do
 #      page.should have_selector('title',
 #                    :text => "#{base_title} | About")
 #    end
+    # it { should have_title(full_title('About')) }
   end
   
   describe "Contact page" do
