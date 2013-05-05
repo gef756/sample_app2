@@ -85,25 +85,39 @@ describe "Authentication" do
           it { should have_title 'Sign in' }
         end
       end
+    end # for non-signed in users
       
-      describe "as wrong user" do
-        let(:user) { FactoryGirl.create(:user) }
-        let(:wrong_user) { 
-              FactoryGirl.create(:user, email: "wrong@example.com") }
-        before { sign_in user }        
+    describe "as wrong user" do
+      let(:user) { FactoryGirl.create(:user) }
+      let(:wrong_user) { 
+            FactoryGirl.create(:user, email: "wrong@example.com") }
+      before { sign_in user }        
+  
+      describe "visitng Users#edit page" do
+        before { visit edit_user_path(wrong_user) }
+        # it { should_not have_selector('title', 
+        #    text: full_title('Edit user')) }
+        it { should_not have_title( full_title('Edit user')) }
+      end
+  
+      describe "submitting a PUT request to the Users#update action" do
+        before { put user_path(wrong_user) }
+        specify { response.should redirect_to(root_path) }
+      end
+    end #as wrong user
 
-        describe "visitng Users#edit page" do
-          before { visit edit_user_path(wrong_user) }
-          # it { should_not have_selector('title', 
-          #    text: full_title('Edit user')) }
-          it { should_not have_title( full_title('Edit user')) }
-        end
+    describe "as non-admin user" do
+      let(:user) { FactoryGirl.create(:user) }
+      let(:non_admin) { FactoryGirl.create(:user) }
 
-        describe "submitting a PUT request to the Users#update action" do
-          before { put user_path(wrong_user) }
-          specify { response.should redirect_to(root_path) }
-        end
+      before { sign_in non_admin }
+
+      describe "submitting a DELETE request to
+                     the Users#destroy action" do
+        before { delete user_path(user) }
+        specify { response.should redirect_to(root_path) }
       end
     end
-  end
-end
+ 
+  end # authorization
+end # Authentication
